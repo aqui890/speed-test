@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            border: none;
+            outline: none;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* flex-direction: column; */
+
+            border: 1px solid #222;
+        }
+        
+        .stop-watch {
+            text-align: center;
+        }
+
+        .stop-watch p {
+            margin-bottom: 30px;
+        }
+
+        .start-btn {
+            width: 100px;
+            height: 45px;
+            
+            background-color: rgb(27, 88, 255);
+            color: #fff;
+        }
+
+        .pause-btn {
+            width: 100px;
+            height: 45px;
+
+            background-color: red;
+            color: #fff;
+        }
+
+        .reset-btn {
+            width: 100px;
+            height: 45px;
+
+            background-color: green;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="stop-watch-wrap">
+            <div class="stop-watch">
+                <p>00 : 00 : 00</p>
+    
+            </div>
+            <div class="stop-watch-controller">
+                <button class="start-btn">시작</button>
+                <button class="pause-btn">중지</button>
+                <button class="reset-btn">초기화</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startBtn = document.querySelector(".start-btn");
+        const pauseBtn = document.querySelector(".pause-btn");
+        const resetBtn = document.querySelector(".reset-btn");
+
+        let start = 0;
+
+        
+        let elapsed = 0;
+
+        let m = 0;
+        let s = 0;
+        let ms = 0;
+        let pausedTime = 0;
+        const load = () => {
+            elapsed = Date.now() - start;
+            m = Math.floor(elapsed / 60000);
+            s = Math.floor((elapsed % 60000) / 1000);
+            ms = elapsed % 1000;
+            
+            document.querySelector(".stop-watch").innerHTML = `<p>${m <= 10 ? "0" + m : m} : ${s <= 0 ? "0" + s : s} : ${ms <= 0 ? "0" + ms : ms}`;
+        }
+
+        let time = null;
+
+        startBtn.addEventListener("click", e => {
+            time = setInterval(() => {load()}, 10);
+            start = Date.now() - pausedTime;
+            console.log("start")
+        })
+
+        pauseBtn.addEventListener("click", e => {
+            if(time === null) return;
+
+            clearInterval(time);
+            intervalId = null;
+            pausedTime = elapsed;
+        })
+
+        resetBtn.addEventListener("click", e => {
+             clearInterval(time);
+            intervalId = null;
+
+            start = Date.now();
+            elapsed = 0;
+            pausedTime = 0;
+
+            document.querySelector(".stop-watch").innerHTML = "<p>00 : 00 : 00</p>";
+        })
+    </script>
+</body>
+</html>

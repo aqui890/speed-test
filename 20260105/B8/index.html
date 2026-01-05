@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            border: none;
+            outline: none;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            border: 1px solid #222;
+        }
+
+        .success {
+            width: 100px;
+            height: 45px;
+            
+            background-color: green;
+            color: #fff;
+        }
+
+        .fail {
+            width: 100px;
+            height: 45px;
+
+            background-color: red;
+            color: #fff;
+        }
+
+        .result {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            margin-top: 30px;
+
+            gap: 10px;
+        }
+
+        .success-msg {
+            color: green;
+            position: relative;
+        }
+
+        .fail-msg {
+            color: red;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <button class="success">성공</button>
+            <button class="fail">실패</button>
+        </div>
+
+        <div class="result">
+        </div>
+    </div>
+
+    <script>
+        const successBtn = document.querySelector(".success");
+        const failBtn = document.querySelector(".fail");
+
+        let cnt = 0;
+        let msg = [];
+
+        const clear = (id) => {
+            setTimeout(() => {
+                msg = msg.filter(item => item.id !== id);
+                add();
+            }, 5000);
+        }
+
+        const add = () => {
+            document.querySelector(".result").innerHTML = '';
+
+            document.querySelector(".result").insertAdjacentHTML("beforeend", [...msg.map(item => 
+                `
+                    <div class="${item.type}-msg" data-id=${item.id}>
+                        <p class="${item.type}-msg-item" data-id=${item.id}>${item.message}</p>
+                    </div>
+                `
+            )])
+            
+        }
+
+        successBtn.addEventListener("click", e => {
+            // document.querySelector(".success-msg").style.display = 'block';
+            cnt++;
+            msg.push({id: cnt, type: "success", message: "성공하였습니다."});
+            add();
+            clear(cnt);
+        })
+
+        failBtn.addEventListener("click", e => {
+            // document.querySelector(".fail-msg").style.display = 'block';
+            cnt++;
+            msg.push({id: cnt, type: "fail", message: "실패하였습니다."});
+            add()
+            clear(cnt);
+        })
+
+        document.querySelector(".result").addEventListener("click", e => {
+            console.log(e.target);
+            console.log(!e.target.classList.contains("success-msg-item") || !e.target.classList.contains("fail-msg-item"));
+            if(!e.target.classList.contains("success-msg-item") && !e.target.classList.contains("fail-msg-item")) return;
+            msg = msg.filter(item => item.id !== msg.find(item => item.id === parseInt(e.target.dataset.id)).id);
+            console.log(e.target.dataset.id);
+            add();
+        })
+    </script>
+</body>
+</html>

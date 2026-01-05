@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            border: 1px solid #222;
+        }
+
+        .fit-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <video src="./test-video.mp4" class="fit-cover"></video>
+    </div>
+
+    <div class="video-control">
+        <button class="play">재생</button>
+        <button class="pause">일지 정지</button>
+        <button class="minus">10초 되감기</button>
+        <button class="plus">10초 빨리감기</button>
+        <button class="mute">음소거</button>
+        <button class="unmute">음소거 해제</button>
+        <p class="current-time">00:00</p>
+    </div>
+
+    <script>
+        const video = document.querySelector("video");
+
+        let time = null
+
+        let videoCT = 0;
+        let m = 0;
+        let s = 0;
+
+        document.querySelector(".play").addEventListener("click", e => {
+            video.play();
+            console.log(String(video.currentTime).split("."));
+            time = setInterval(() => {
+                videoCT = video.currentTime
+                m = Math.floor(videoCT / 60);
+                s = Math.floor(videoCT % 60);
+                document.querySelector(".current-time").innerHTML = `<div>${m <= 10 ? "0" + m : m} : ${s <= 10 ? "0" + s : s}`;
+                
+            }, 10)
+        })
+
+        document.querySelector(".pause").addEventListener("click", e => {
+            video.pause();
+
+            clearInterval(time);
+        })
+        
+        document.querySelector(".minus").addEventListener("click", e => {
+            video.currentTime -= 10;
+        })
+
+        document.querySelector(".plus").addEventListener("click", e => {
+            video.currentTime += 10;
+        })
+
+        document.querySelector(".mute").addEventListener("click", e => {
+            video.muted = true;
+        })
+
+        document.querySelector(".unmute").addEventListener("click", e => {
+            video.muted = false;
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            border: none;
+            outline: none;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            border: 1px solid #222;
+        }
+
+        .send-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            gap: 10px;
+        }
+
+        input {
+            width: 30px;
+            height: 50px;
+            text-align: center;
+        }
+
+        .disabled-btn {
+            width: 100px;
+            height: 45px;
+            background-color: #aaa;
+        }
+
+        .send-btn {
+            width: 100px;
+            height: 45px;
+            background-color: rgb(255, 53, 53);
+            display: none;
+            cursor: pointer;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="send-wrap">
+            <div class="input-wrap">
+                <input type="text" name="input1" id="input1">
+                <input type="text" name="input2" id="input2">
+                <input type="text" name="input3" id="input3">
+                <input type="text" name="input4" id="input4">
+                <input type="text" name="input5" id="input5">
+                <input type="text" name="input6" id="input6">
+            </div>
+    
+            <button class="disabled-btn" disabled>전송하기</button>
+            <button class="send-btn">전송하기</button>
+        </div>
+    </div>
+    <script>
+        const input1 = document.querySelector("#input1");
+        const input2 = document.querySelector("#input2");
+        const input3 = document.querySelector("#input3");
+        const input4 = document.querySelector("#input4");
+        const input5 = document.querySelector("#input5");
+        const input6 = document.querySelector("#input6");
+
+        input1.addEventListener("input", e => {
+            
+            console.log(e.target.value);
+            console.log(/[^0-9]/.test(e.target.value));
+            if(/[^0-9]/.test(e.target.value)) {
+                console.log(e.target.value);
+                input1.value = '';
+            } else {
+                input2.focus();
+            }
+            
+        })
+
+        input2.addEventListener("input", e => {
+            console.log(e.target);
+
+            if(/[^0-9]/.test(e.target.value)) {
+                console.log(e.target.value);
+                input2.value = '';
+            } else {
+                input3.focus();
+            }
+        })
+
+        input3.addEventListener("input", e => {
+            console.log(e.target);
+
+            if(/[^0-9]/.test(e.target.value)) {
+                console.log(e.target.value);
+                input3.value = '';
+            } else {
+                input4.focus();
+            }
+        })
+
+
+        input4.addEventListener("input", e => {
+            console.log(e.target);
+
+            if(/[^0-9]/.test(e.target.value)) {
+                console.log(e.target.value);
+                input4.value = '';
+            } else {
+                input5.focus();
+            }
+        })
+
+        input5.addEventListener("input", e => {
+            console.log(e.target);
+
+
+            if(/[^0-9]/.test(e.target.value)) {
+                console.log(e.target.value);
+                input5.value = '';
+            } else {
+                input6.focus();
+            }
+        })
+
+        input6.addEventListener("input", e => {
+            console.log(e.target);
+
+            if(/[^0-9]/.test(e.target.value)) {
+                console.log(e.target.value);
+                input6.value = '';
+            } else {
+                document.querySelector(".disabled-btn").style.display = 'none';
+                document.querySelector(".send-btn").style.display = 'block';
+            }
+
+        })
+    </script>
+</body>
+</html>
