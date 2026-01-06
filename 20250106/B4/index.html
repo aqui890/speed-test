@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            <p class="clock-time">00 : 00 : 00</p>
+        </div>
+    </div>
+
+    <script>
+        const clock = document.querySelector(".clock");
+        let time = null;
+
+        console.log(time);
+
+        let h = 0;
+        let m = 0;
+        let s = 0;
+
+        const load = () => {
+            time = new Date();
+            h = time.getHours()
+            m = time.getMinutes()
+            s = time.getSeconds();
+            // console.log(h, m, s);
+            clock.innerHTML = `${h < 10 ? "0" + h : h} : ${m < 10 ? "0" + m : m} : ${s < 10 ? "0" + s : s}`
+        }
+
+        setInterval(() => {
+            load()
+        }, 10)
+
+        console.log(time.getHours());
+        console.log(time.getMinutes());
+        console.log(time.getSeconds());
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            border: none;
+            outline: none;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid #222;
+        }
+
+        canvas {
+            border: 1px solid #222;
+        }
+
+        .eraser {
+            width: 100px;
+            height: 45px;
+
+            background-color: rgb(35, 75, 255);
+            color: #fff;
+        }
+
+        .save {
+            width: 100px;
+            height: 45px;
+
+            background-color: green;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="canvas-wrap"> 
+            <canvas width="500" height="200"></canvas>
+    
+            <div class="canvas-control">
+                <button class="eraser">지우개</button>
+                <button class="save">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+
+        let flag = 0;
+
+        // let mode = "line";
+
+        document.querySelector(".save").addEventListener("click", e => {
+            canvas.toBlob((blob) => {
+                const a = document.createElement('a');
+                a.download = 'canvas.png';
+                a.href = URL.createObjectURL(blob);
+                a.click();
+    
+                URL.revokeObjectURL(a.href);
+            })
+        })
+
+        document.querySelector(".eraser").addEventListener("click", e => {
+            ctx.clearRect(0, 0,canvas.width, canvas.height);
+        })
+
+        canvas.addEventListener("mousedown", e => {
+            console.log(e.offsetX, e.offsetY);
+
+            flag = 1;
+
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+        })
+
+        canvas.addEventListener("mousemove", e => {
+            if(flag === 0) return;
+
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+        })
+
+        canvas.addEventListener("mouseup", e => {
+            flag = 0;
+        })
+    </script>
+</body>
+</html>
