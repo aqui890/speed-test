@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 1224px;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            border: 1px solid #222;
+
+            gap: 10px;
+        }
+        
+        .card {
+            width: 600px;
+            height: 80px;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            border-radius: 20px;
+
+            box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .content,
+        .star {
+            width: 50%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .desc {
+            font: 0.95rem;
+            
+            color: #ddd;
+        }
+
+        .active {
+            color: rgb(255, 221, 0);
+            
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="card">
+            <div class="content">
+                <p class="title">HTML</p>
+                <p class="desc">markup language</p>
+            </div>
+
+            <div class="star">
+                <p>즐겨찾기</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="content">
+                <p class="title">HTML</p>
+                <p class="desc">markup language</p>
+            </div>
+
+            <div class="star active">
+                <p>즐겨찾기</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const run = async () => {
+            const fdata = await fetch("./data.json");
+            const data = await fdata.json();
+
+            return data;
+        }
+
+        const load = async () => {
+            const data = await run();
+            console.log(data);
+
+            let sdata = null
+
+            console.log(JSON.parse(sdata));
+
+            document.querySelector(".container").innerHTML = '';
+
+            for(let i = 0; i < data.length; i++) {
+                sdata = localStorage.getItem(JSON.stringify(data[i].name))
+                console.log(sdata);
+                document.querySelector(".container").insertAdjacentHTML("beforeend", 
+                    `
+                        <div class="card">
+                            <div class="content">
+                                <p class="title">${data[i].name}</p>
+                                <p class="desc">${data[i].desc}</p>
+                            </div>
+                        
+                            <div class="star">
+                                <p class="star-text ${sdata === '{"status":true}' ? "active" : ""}" data-id=${data[i].name}>즐겨찾기</p>
+                            </div>
+                        </div>
+                    `
+                )
+            }
+        }
+
+        let status = null
+
+        document.querySelector(".container").addEventListener("click", e => {
+            console.log(e.target);
+
+            if(!e.target.classList.contains("star-text")) return;
+
+            console.log(e.target);
+            
+            if(e.target.classList.contains("active")) {
+                e.target.classList.remove("active");
+                localStorage.setItem(JSON.stringify(e.target.dataset.id), JSON.stringify({status: false}));
+            } else {
+                e.target.classList.add("active");
+                localStorage.setItem(JSON.stringify(e.target.dataset.id), JSON.stringify({status: true}))
+            }
+        })
+
+        load();
+    </script>
+</body>
+</html>

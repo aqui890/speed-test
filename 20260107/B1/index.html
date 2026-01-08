@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        input {
+            width: 150px;
+            height: 45px;
+
+            border: none;
+            outline: none;
+
+            box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.1);
+
+            margin-left: 30px;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="password">비밀번호</label>
+        <input type="text" name="password" id="password">
+    </div>
+
+    <script>
+        document.querySelector("input").addEventListener("input", e => {
+            if(e.target.value.length < 6) {
+                e.target.style.border = '1px solid red';
+            }
+
+            if(/[A-Z]/.test(e.target.value) && /[0-9]/.test(e.target.value)) {
+                e.target.style.border = '1px solid orange';
+            }
+
+            if(/[A-Z]/.test(e.target.value) && /[0-9]/.test(e.target.value) && /[~!@#$%^&*()_+|<>?:{}]/.test(e.target.value) && e.target.value.length >= 8) {
+                e.target.style.border = '1px solid green';
+            }
+        })
+    </script>
+</body>
+</html>

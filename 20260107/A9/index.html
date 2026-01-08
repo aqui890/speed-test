@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .fit-cover {
+            width: 100%;
+            height: 100vh;
+
+            object-fit: cover;
+            
+            position: absolute;
+
+            z-index: -1;
+        }
+
+        input {
+            display: none;
+        }
+        
+        .container {
+            width: 1024px;
+            height: 600px;
+
+            /* border: 1px solid #fff; */
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            overflow: hidden;
+        }
+
+        .slide-item {
+            width: 100%;
+            height: 100%;
+
+            position: absolute;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .slide-item.second {
+            left: 100%;
+        }
+
+        .slide-item.third {
+            left: 100%;
+        }
+
+        .slide-card {
+            width: 300px;
+            height: 400px;
+            
+            /* border: 1px solid #fff; */
+        }
+
+        .card-img {
+            width: 300px;
+            height: 200px;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .card-body {
+            text-align: start;
+            
+            color: #fff;
+
+            margin-top: 30px;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+        }
+
+        .author-year {
+            color: #aaa;
+        }
+
+        .slide-control {
+            color: #fff;
+
+            width: 100px;
+            height: 50px;
+
+            /* border: 1px solid #fff; */
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+        }
+
+        .slide-control label {
+            width: 45px;
+            height: 45px;
+            
+            border: 1px solid #fff;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .second-group {
+            display: none;
+        }
+
+        .third-group {
+            display: none;
+        }
+
+        #first-control:checked ~ .container .slide-item.second {
+            animation: 1s slide3 forwards;
+        }
+
+        #first-control:checked ~ .container .slide-item.first {
+            animation: 1s slide4 forwards;
+        }
+
+        #second-control:checked ~ .container .slide-item.second {
+            animation: 1s slide2 forwards;
+        }
+
+        #second-control:checked ~ .container .slide-item.first {
+            animation: 1s slide1 forwards;
+        }
+
+        #second-control:checked ~ .slide-control.first-group {
+            display: none;
+        }
+
+        #second-control:checked ~ .slide-control.second-group {
+            display: flex;
+        }
+
+        /* #second-control:checked ~ .slide-control.third-group {
+            display: none;
+        } */
+
+        #third-control:checked ~ .slide-control.first-group {
+            display: none;
+        }
+
+        #third-control:checked ~ .slide-control.second-group {
+            display: none;
+        }
+
+        #third-control:checked ~ .slide-control.third-group {
+            display: flex;
+        }
+
+        #third-control:checked ~ .container .slide-item.second {
+            animation: 1s slide1 forwards;
+        }
+
+        #third-control:checked ~ .container .slide-item.third {
+            animation: 1s slide2 forwards;
+        }
+
+        #second-back:checked ~ .container .slide-item.second {
+            animation: 1s slide4 forwards;
+        }
+
+        #second-back:checked ~ .container .slide-item.third {
+            animation: 1s slide3 forwards;
+        }
+
+        #third-control:checked ~ .container .slide-item.first {
+            left: -100%;
+        }
+
+        #second-back:checked ~ .container .slide-item.first {
+            left: -100%;
+        }
+
+        @keyframes slide1 {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: -100%;
+            }
+        }
+
+        @keyframes slide2 {
+            0% {
+                left: 100%;
+            }
+
+            100% {
+                left: 0;
+            }
+        }
+
+        @keyframes slide3 {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes slide4 {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="./images/background.png" alt="background-img" class="fit-cover">
+    <input type="radio" name="slide" id="first-control">
+    <input type="radio" name="slide" id="second-control">
+    <input type="radio" name="slide" id="third-control">
+    <input type="radio" name="slide" id="second-back">
+    <div class="container">
+        <div class="slide-item first">
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/1.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">삼나무와 초록 밀밭</p>
+                    <i>Cypresses and Green Wheat Field</i>
+                    <p class="author-year">Vincent van Gogh,1889</p>
+                </div>
+            </div>
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/2.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">모델과 화가</p>
+                    <i>The Painter and His Model</i>
+                    <p class="author-year">Pablo Picasso,1928</p>
+                </div>
+            </div>
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/3.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">작은 거리</p>
+                    <i>The Little Street</i>
+                    <p class="author-year">Johannes Vermeer,1657–1658</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-item second">
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/4.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">빈도 알토비티의 초상</p>
+                    <i>Portrait of Bindo Altovitit</i>
+                    <p class="author-year">Raphael,1515</p>
+                </div>
+            </div>
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/5.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">나르시스의 변형</p>
+                    <i>The Metamorphosis of Narcissus</i>
+                    <p class="author-year">Salvador Dalí,1937</p>
+                </div>
+            </div>
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/6.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">베노아의 성모</p>
+                    <i>The Benois Madonna</i>
+                    <p class="author-year">Leonardo da Vinci,1478–1480</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-item third">
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/7.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">과일 바구니를 든 소년</p>
+                    <i>Boy with a Basket of Fruit</i>
+                    <p class="author-year">Caravaggio,1593–1594</p>
+                </div>
+            </div>
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/8.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">들쥐</p>
+                    <i>Young Hare</i>
+                    <p class="author-year">Albrecht Dürer,1502</p>
+                </div>
+            </div>
+            <div class="slide-card">
+                <div class="card-img">
+                    <img src="./images/9.jpg" alt="slide-img">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">톨레도 풍경</p>
+                    <i>View of Toledo</i>
+                    <p class="author-year">El Greco,1596–1600</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="slide-control first-group">
+        <label for="first-control-1">&lt;</label>
+        <label for="second-control">&gt;</label>
+    </div>
+
+    <div class="slide-control second-group">
+        <label for="first-control">&lt;</label>
+        <label for="third-control">&gt;</label>
+    </div>
+
+    <div class="slide-control third-group">
+        <label for="second-back">&lt;</label>
+        <label for="third-control">&gt;</label>
+    </div>
+</body>
+</html>
