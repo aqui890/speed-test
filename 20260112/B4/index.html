@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid #222;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            00 : 00 : 00
+        </div>
+    </div>
+
+    <script>
+        const clock = document.querySelector(".clock");
+
+        let now = null;
+
+        let h = null;
+        let m = null;
+        let s = null;
+
+        setInterval(() => {
+            now = new Date();
+            h = now.getHours();
+            m = now.getMinutes();
+            s = now.getSeconds();
+
+            clock.innerHTML = '';
+            clock.innerHTML = `${h < 10 ? "0" + h : h} : ${m < 10 ? "0" + m : m} : ${s < 10 ? "0" + s : s}`;
+        }, 10);
+    </script>
+</body>
+</html>
