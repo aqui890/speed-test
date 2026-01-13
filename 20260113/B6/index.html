@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid #222;
+        }
+
+        button {
+            border: none;
+            outline: none;
+
+            width: 100px;
+            height: 45px;
+
+            background-color: #aaa;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>이미지를 여기에 드래그하세요</p>
+    </div>
+    <button class="reset">초기화</button>
+
+    <script>
+        document.querySelector(".container").addEventListener("dragover", e => {
+            console.log(e.target)
+            e.preventDefault();
+        })
+
+        document.querySelector(".container").addEventListener("drop", e => {
+            const reader = new FileReader();
+
+            const file = e.dataTransfer.files[0];
+
+            reader.readAsDataURL(file);
+
+            reader.onload = (e2) => {
+                const img = new Image();
+                img.src = e2.target.result;
+                img.onload = () => {
+                    document.querySelector(".container").innerHTML = '';
+                    document.querySelector(".container").appendChild(img);
+                }
+            }
+            
+            console.log(e.dataTransfer.files[0]);
+            e.preventDefault();
+        })
+
+        document.querySelector(".reset").addEventListener("click", e => {
+            document.querySelector(".container").innerHTML = '<p>이미지를 여기에 드래그하세요</p>';
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1024px;
+            height: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid #222;
+        }
+
+        .setting {
+            width: 400px;
+            height: 70px;
+
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            flex-direction: column-reverse;
+
+            /* border: 1px solid #222; */
+
+            position: relative;
+
+            /* text-align: end÷; */
+        }
+
+        .logout {
+            width: 500px;
+            height: 70px;
+
+            display: flex;
+            justify-content: start;
+            align-items: center;
+
+            text-align: start;
+
+            /* border: 1px solid #222; */
+            
+            padding-left: 30px;
+        }
+
+        .logout-msg {
+            margin-right: 10px;
+        }
+
+        .setting-content {
+            position: absolute;
+            top: 0;
+            left: 50px;
+        }
+
+        .setting-content,
+        .logout-content {
+            border: 2px solid #222;
+
+            display: none;
+        }
+
+        .setting-msg:hover ~ .setting-content {
+            display: block;
+        }
+
+        .setting-msg:focus ~ .setting-content {
+            display: block;
+        }
+
+        .logout .logout-msg:hover ~ .logout-content {
+            display: block;
+        }
+
+        .logout .logout-msg:focus ~ .logout-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="setting">
+            <div class="setting-msg" tabindex="0">설정</div>
+            <div class="setting-content">“설정” 버튼을 눌러 서비스를 설정할 수 있습니다.</div>
+        </div>
+        <div class="logout">
+            <div class="logout-msg" tabindex="0">로그아웃</div>
+            <div class="logout-content">로그아웃되고 메인페이지로 이동합니다.</div>
+        </div>
+    </div>
+</body>
+</html>
