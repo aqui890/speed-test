@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            gap: 20px;
+        }
+
+        .card {
+            width: 200px;
+            height: 200px;
+
+            border-radius: 20px;
+            
+            box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 50%;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 20px 20px 0 0;
+        }
+
+        .card-body {
+            width: 100%;
+            height: 50%;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-weight: bold;
+        }
+
+        .card-btn {
+            width: 70px;
+            height: 30px;
+
+            border: none;
+            outline: none;
+
+            background-color: rgb(0, 72, 255);
+            color: #fff;
+
+            border-radius: 12px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            body {
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+            body {
+                width: 500px;
+                /* border: 1px solid #222; */
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            body {
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-img">
+            <img src="./img/card1.jpg" alt="card-img1">
+        </div>
+        <div class="card-body">
+            <div class="card-title">이미지 샘플카드</div>
+            <button class="card-btn">더보기</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <img src="./img/card2.jpg" alt="card-img2">
+        </div>
+        <div class="card-body">
+            <div class="card-title">이미지 샘플카드</div>
+            <button class="card-btn">더보기</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <img src="./img/card3.jpg" alt="card-img3">
+        </div>
+        <div class="card-body">
+            <div class="card-title">이미지 샘플카드</div>
+            <button class="card-btn">더보기</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <img src="./img/card4.jpg" alt="card-img4">
+        </div>
+        <div class="card-body">
+            <div class="card-title">이미지 샘플카드</div>
+            <button class="card-btn">더보기</button>
+        </div>
+    </div>
+</body>
+</html>
