@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            outline: none;
+            border: none;
+
+            background-color: #fff;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result {
+            width: 1024px;
+            height: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            border: 1px solid #222;
+
+            gap: 20px;
+        }
+
+        .card {
+            width: 150px;
+            height: 150px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            border: 1px solid #222;
+            border-radius: 20px;
+        }
+
+        .card-top {
+            width: 100%;
+            height: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            text-align: center;
+        }
+
+        .card button {
+            cursor: pointer;
+        }
+
+        .card-bottom {
+            width: 100%;
+            height: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .content {
+            color: #aaa;
+        }
+
+        .active {
+            color: rgb(255, 217, 0);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="result">
+        <div class="card">
+            <div class="card-top">
+                <p class="title">JavaScript</p>
+                <p class="content">markup-language</p>
+            </div>
+            <div class="card-bottom">
+                <button>즐겨찾기</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const loadData = async () => {
+            const fData = await fetch("./data.json");
+            const data = await fData.json();
+
+            return data;
+        }
+
+        let bData = null
+
+        const draw = async () => {
+            const data = await loadData();
+
+            console.log(data);
+
+            document.querySelector(".result").innerHTML = '';
+
+            for(let i = 0; i < data.length; i++) {
+                bData = localStorage.getItem(JSON.stringify(data[i].name));
+                console.log(bData);
+                document.querySelector(".result").insertAdjacentHTML("beforeend", 
+                    `
+                        <div class="card">
+                            <div class="card-top">
+                                <p class="title">${data[i].name}</p>
+                                <p class="content">${data[i].desc}</p>
+                            </div>
+                            <div class="card-bottom">
+                                <button class="fav ${bData === "true" ? 'active' : ''}" data-id=${data[i].id}>즐겨찾기</button>
+                            </div>
+                        </div>
+                    `
+                )
+            }
+        }
+
+        let findData = null
+
+        document.querySelector(".result").addEventListener("click", async e => {
+            if(!e.target.classList.contains("fav")) return;
+
+            const arr = await loadData();
+            console.log(arr)
+            findData = arr.find(item => item.id === Number(e.target.dataset.id));
+            console.log(findData);
+            if(!e.target.classList.contains("active")) {
+                localStorage.setItem(JSON.stringify(findData.name), JSON.stringify(true));
+                draw()
+            } else {
+                localStorage.setItem(JSON.stringify(findData.name), JSON.stringify(false));
+                draw()
+            }
+
+            console.log(e.target);
+        })
+
+        draw();
+    </script>
+</body>
+</html>
