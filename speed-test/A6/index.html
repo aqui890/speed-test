@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        footer {
+            width: 100%;
+
+            position: fixed;
+            bottom: 0;
+            left: 0;
+
+            background-color: rgb(0, 39, 71);
+        }
+
+        .first,
+        .second {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .first {
+            border-bottom: 1px solid #fff;
+        }
+
+        .title {
+            width: 50%;
+
+            padding-top: 50px;
+            padding-left: 50px;
+            padding-bottom: 50px;
+        }
+
+        .link {
+            width: 50%;
+
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            gap: 30px;
+
+            padding-right: 50px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .logo {
+            color: rgb(0, 68, 255);
+
+            font-weight: bold;
+            font-size: 1.8rem;
+
+            margin-bottom: 20px;
+        }
+
+        .content {
+            color: #fff;
+
+            font-size: 0.95rem;
+        }
+
+        .link-title {
+            color: #fff;
+
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .link-content {
+            color: #eee;
+        }
+
+        .info {
+            color: #fff;
+            padding-left: 50px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .copy {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 50px;
+
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <footer> 
+        <div class="first">
+            <div class="title">
+                <p class="logo">WorldSkills Korea</p>
+                <p class="content">세계기능올림픽대회를 통해 기능인재 양성과 <br>
+                    기능의 우수성을 널리 알리고 있습니다.</p>
+            </div>
+
+            <div class="link">
+                <div class="first-link">
+                    <p class="link-title">바로가기</p>
+                    <p class="link-content">기능경기대회</p>
+                    <p class="link-content">교육과정</p>
+                    <p class="link-content">자료실</p>
+                    <p class="link-content">공지사항</p>
+                </div>
+                <div class="second-link">
+                    <p class="link-title">고객지원</p>
+                    <p class="link-content">FAQ</p>
+                    <p class="link-content">1:1 문의</p>
+                    <p class="link-content">이용약관</p>
+                    <p class="link-content">개인정보처리방침</p>
+                </div>
+            </div>
+        </div>
+        <div class="second">
+            <div class="info">
+                <p>주소: 서울특별시 강남구 테헤란로 123 WorldSkills 빌딩</p>
+                <p>전화: 02-1234-5678 | 이메일: info@worldskills.kr</p>
+            </div>
+            <div class="copy">
+                <p>© 2026 WorldSkills Korea. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

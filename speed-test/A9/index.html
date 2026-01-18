@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .fit-cover {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .back {
+            position: absolute;
+
+            z-index: -1;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100vh;
+        }
+
+        input {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        .container {
+            width: 1000px;
+            height: 600px;
+
+            /* border: 1px solid #fff; */
+
+            display: flex;
+
+            overflow: hidden;
+            
+            position: relative;
+        }
+
+        .slide-item {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+        }
+
+        .slide-item:nth-child(2) {
+            left: 100%;
+        }
+
+        .slide-item:nth-child(3) {
+            left: 100%;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+
+            /* border: 1px solid #fff; */
+        }
+
+        .card-img {
+            width: 100%;
+            height: 50%;
+
+            margin-bottom: 10px;
+        }
+
+        .card-body {
+            width: 100%;
+            height: 50%;
+        }
+
+        .title-kr,
+        .title-en {
+            color: #fff;
+        }
+
+        .a-y {
+            color: #aaa;
+        }
+
+        #slide-1:checked ~ .container .slide-item:nth-child(1) {
+            animation: slide3 1s forwards;
+        }
+
+        #slide-1:checked ~ .container .slide-item:nth-child(2) {
+            animation: slide4 1s forwards;
+        }
+
+        #slide-2:checked ~ .container .slide-item:nth-child(1) {
+            animation: slide1 1s forwards;
+        }
+
+        #slide-2:checked ~ .container .slide-item:nth-child(2) {
+            animation: slide2 1s forwards;
+        }
+
+        #slide-3:checked ~ .container .slide-item:nth-child(2) {
+            animation: slide1 1s forwards;
+        }
+
+        #slide-3:checked ~ .container .slide-item:nth-child(3) {
+            animation: slide2 1s forwards;
+        }
+
+        #slide-3:checked ~ .container .slide-item:nth-child(1) {
+            left: -100%;
+        }
+
+        #slide-4:checked ~ .container .slide-item:nth-child(2) {
+            animation: slide3 1s forwards;
+        }
+
+        #slide-4:checked ~ .container .slide-item:nth-child(3) {
+            animation: slide4 1s forwards;
+        }
+
+        #slide-4:checked ~ .container .slide-item:nth-child(1) {
+            left: -100%;
+        }
+
+        @keyframes slide1 {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: -100%;
+            }
+        }
+
+        @keyframes slide2 {
+            0% {
+                left: 100%;  
+            }
+
+            100% {
+                left: 0;
+            }
+        }
+
+        @keyframes slide3 {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 0;
+            }
+        }
+
+        @keyframes slide4 {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .control .group:nth-child(2),
+        .control .group:nth-child(3) {
+            display: none;
+        }
+
+        .control {
+            width: 100px;
+            height: 50px;
+
+            /* border: 1px solid #fff; */
+
+            position: absolute;
+            bottom: 10%;
+            left: 45%;
+        }
+
+        .group {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .group label {
+            width: 35px;
+            height: 35px;
+
+            border: 1px solid #fff;
+
+            color: #fff;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #slide-1:checked ~ .container .group:nth-child(1) {
+            display: flex;
+        }
+
+        #slide-2:checked ~ .container .group:nth-child(2) {
+            display: flex;
+        }
+
+        #slide-2:checked ~ .container .group:nth-child(1) {
+            display: none;
+        }
+
+        #slide-3:checked ~ .container .group:nth-child(3) {
+            display: flex;
+        }
+
+        #slide-3:checked ~ .container .group:nth-child(1) {
+            display: none;
+        }
+
+        #slide-4:checked ~ .container .group:nth-child(1) {
+            display: none;
+        }
+
+        #slide-4:checked ~ .container .group:nth-child(2) {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="radio" name="slide" id="slide-1">
+    <input type="radio" name="slide" id="slide-2">
+    <input type="radio" name="slide" id="slide-3">
+    <input type="radio" name="slide" id="slide-4">
+    <img src="./images/background.png" alt="background" class="fit-cover back">
+
+    <div class="container">
+        <div class="slide-item">
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/1.jpg" alt="img-1" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">삼나무와 초록 밀밭</p>
+                    <i class="title-en">Cypresses and Green Wheat Field</i>
+                    <p class="a-y">Vincent van Gogh,1889</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/2.jpg" alt="img-2" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">모델과 화가</p>
+                    <i class="title-en">The Painter and His Model</i>
+                    <p class="a-y">Pablo Picasso,1928</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/3.jpg" alt="img-3" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">작은 거리</p>
+                    <i class="title-en">The Little Street</i>
+                    <p class="a-y">Johannes Vermeer,1657–1658</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-item">
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/4.jpg" alt="img-4" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">빈도 알토비티의 초상</p>
+                    <i class="title-en">Portrait of Bindo Altoviti</i>
+                    <p class="a-y">Raphael,1515</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/5.jpg" alt="img-5" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">나르시스의 변형</p>
+                    <i class="title-en">The Metamorphosis of Narcissus</i>
+                    <p class="a-y">Salvador Dalí,1937</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/6.jpg" alt="img-6" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">베노아의 성모</p>
+                    <i class="title-en">The Benois Madonna</i>
+                    <p class="a-y">Leonardo da Vinci,1478–1480</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-item">
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/7.jpg" alt="img-7" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">과일 바구니를 든 소년</p>
+                    <i class="title-en">Boy with a Basket of Fruit</i>
+                    <p class="a-y">Caravaggio,1593–1594</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/8.jpg" alt="img-8" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">들쥐</p>
+                    <i class="title-en">Young Hare</i>
+                    <p class="a-y">Albrecht Dürer,1502</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="./images/9.jpg" alt="img-9" class="fit-cover">
+                </div>
+                <div class="card-body">
+                    <p class="title-kr">톨레도 풍경</p>
+                    <i class="title-en">View of Toledo</i>
+                    <p class="a-y">El Greco,1596–1600</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="control">
+            <div class="group">
+                <label for="none">&lt;</label>
+                <label for="slide-2">&gt;</label>
+            </div>
+            <div class="group">
+                <label for="slide-1">&lt;</label>
+                <label for="slide-3">&gt;</label>
+            </div>
+            <div class="group">
+                <label for="slide-4">&lt;</label>
+                <label for="none">&gt;</label>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
