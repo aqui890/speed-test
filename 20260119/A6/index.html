@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        footer {
+            width: 100%;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            background-color: rgb(0, 30, 84);
+
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        .first,
+        .second {
+            width: 100%;
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .first {
+            border-bottom: 1px solid #eee;
+        }
+
+        .first-title {
+            width: 50%;
+
+            padding: 50px;
+
+        }
+
+        .title {
+            color: rgb(0, 89, 255);
+            
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .content {
+            color: #fff;
+        }
+
+        .link {
+            width: 50%;
+
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 50px;
+        }
+
+        .link .first-link-title,
+        .link .second-link-title {
+            color: #fff;
+
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .link .content {
+            color: #bbb;
+        }
+
+        .info {
+            width: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+
+            padding-left: 50px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 20px;
+        }
+
+        .info p {
+            color: #bbb;
+        }
+
+        .copy {
+            width: 50%;
+
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .copy p {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="first">
+            <div class="first-title">
+                <p class="title">WorldSkills Korea</p>
+                <p class="content">
+                    세계기능올림픽대회를 통해 기능인재 양성과 <br>
+                    기능의 우수성을 널리 알리고 있습니다.
+                </p>
+            </div>
+            <div class="link">
+                <div class="first-link">
+                    <p class="first-link-title">바로가기</p>
+                    <p class="content">교육과정</p>
+                    <p class="content">기능경기대회</p>
+                    <p class="content">자료실</p>
+                    <p class="content">공지사항</p>
+                </div>
+                <div class="second-link">
+                    <p class="first-link-title">고객지원</p>
+                    <p class="content">FAQ</p>
+                    <p class="content">1:1 문의</p>
+                    <p class="content">이용약관</p>
+                    <p class="content">개인정보처리방침</p>
+                </div>
+            </div>
+        </div>
+        <div class="second">
+            <div class="info">
+                <p>주소: 서울특별시 강남구 테헤란로 123 WorldSkills 빌딩</p>
+                <p>전화: 02-1234-5678 | 이메일: info@worldskills.kr</p>
+            </div>
+            <div class="copy">
+                <p>© 2026 WorldSkills Korea. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
