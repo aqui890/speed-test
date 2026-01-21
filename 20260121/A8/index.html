@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .fit-cover {
+            width: 100%;
+            height: 100%;
+            
+            object-fit: cover;
+        }
+
+        .fx-4 {
+            font-size: 1.6rem;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart {
+            width: 800px;
+
+            border: 1px solid #222;
+            border-radius: 20px;
+
+            background-color: #eee;
+        }
+
+        .cart-title {
+            width: 100%;
+            height: 50px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #fff;
+
+            background-color: #222;
+
+            border-radius: 20px 20px 0 0;
+        }
+
+        .card {
+            padding: 30px;
+
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: #fff;
+        }
+
+        .card-left {
+            width: 50%;
+
+            display: flex;
+            justify-content: start;
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .card-right {
+            width: 50%;
+
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            gap: 20px;
+
+            /* border: 1px solid #222; */
+        }
+
+        .card-img {
+            width: 100px;
+            height: 100px;
+
+            border-radius: 10px;
+        }
+
+        .card-img img {
+            border-radius: 10px;
+        }
+
+        .product-title {
+            font-weight: bold;
+            
+            margin-bottom: 20px;
+        }
+
+        .product-text {
+            color: #bbb;
+        }
+
+        .product-count {
+            width: 100px;
+
+            /* border: 1px solid #222; */
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .minus,
+        .plus {
+            width: 30px;
+            height: 30px;
+
+            cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid #222;
+            border-radius: 5px;
+        }
+
+        .cancel-btn {
+            width: 40px;
+            height: 40px;
+
+            text-align: center;
+            line-height: 40px;
+
+            background-color: rgb(255, 0, 60);
+            color: #fff;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+        }
+
+        .cart-detail {
+            width: 100%;
+            padding: 30px;
+        }
+
+        .first,
+        .second {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-bottom {
+            width: 100%;
+
+            background-color: #fff;
+
+            padding: 20px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            gap: 20px;
+
+            border-radius: 0 0 20px 20px;
+        }
+
+        button {
+            outline: none;
+            border: none;
+
+            width: 100px;
+            height: 45px;
+
+            border-radius: 12px;
+
+            color: #fff;
+        }
+
+        .continue {
+            background-color: #aaa;
+        }
+
+        .order {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart">
+        <div class="cart-title fx-4 fw-bold">장바구니</div>
+
+        <div class="cart-body">
+            <div class="card-wrap">
+                <div class="card">
+                    <div class="card-left">
+                        <div class="card-img">
+                            <img src="./images/tshirt.jpg" alt="tshirt" class="fit-cover">
+                        </div>
+                        <div class="card-info">
+                            <p class="product-title">WorldSkills 공식 티셔츠</p>
+                            <p class="product-text">색상: 네이비</p>
+                            <p class="product-text">사이즈: L</p>
+                        </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="product-count">
+                            <div class="minus">-</div>
+                            <div class="num">2</div>
+                            <div class="plus">+</div>
+                        </div>
+                        <div class="product-price">
+                            25,000원
+                        </div>
+                        <div class="cancel-btn">
+                            ×
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-left">
+                        <div class="card-img">
+                            <img src="./images/book.jpg" alt="book" class="fit-cover">
+                        </div>
+                        <div class="card-info">
+                            <p class="product-title">기능경기 가이드북</p>
+                            <p class="product-text">종류: 웹디자인</p>
+                            <p class="product-text">2026년 최신판</p>
+                        </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="product-count">
+                            <div class="minus">-</div>
+                            <div class="num">1</div>
+                            <div class="plus">+</div>
+                        </div>
+                        <div class="product-price">
+                            15,000원
+                        </div>
+                        <div class="cancel-btn">
+                            ×
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-left">
+                        <div class="card-img">
+                            <img src="./images/laptop-case.jpg" alt="laptop-case" class="fit-cover">
+                        </div>
+                        <div class="card-info">
+                            <p class="product-title">WorldSkills 노트북 파우치</p>
+                            <p class="product-text">색상: 블랙</p>
+                            <p class="product-text">15인치 호환</p>
+                        </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="product-count">
+                            <div class="minus">-</div>
+                            <div class="num">1</div>
+                            <div class="plus">+</div>
+                        </div>
+                        <div class="product-price">
+                            35,000원
+                        </div>
+                        <div class="cancel-btn">
+                            ×
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-detail">
+                <div class="first" style="border-bottom: 1px solid #222;">
+                    <div class="first-left">
+                        <p style="margin-bottom: 10px;">상품금액</p>
+                        <p style="margin-bottom: 30px;">배송비</p>
+                    </div>
+                    <div class="first-right">
+                        <p style="margin-bottom: 10px;">75,000원</p>
+                        <p style="margin-bottom: 30px;">3,000원</p>
+                    </div>
+                </div>
+                <div class="second" style="margin-top: 30px;">
+                    <div class="second-left">
+                        <p style="font-weight: bold; font-size: 1.2rem;">총 결제금액</p>
+                    </div>
+                    <div class="second-right">
+                        <p style="font-weight: bold; font-size: 1.2rem;">78,000원</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-bottom">
+            <button class="continue">쇼핑 계속하기</button>
+            <button class="order">주문하기</button>
+        </div>
+    </div>
+</body>
+</html>
