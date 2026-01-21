@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        00 : 00 : 00
+    </div>
+
+    <script>
+        const clock = document.querySelector(".clock");
+
+        let time = null;
+
+        let h = 0;
+        let m = 0;
+        let s = 0;
+
+        const load = () => {
+            time = new Date();
+            h = time.getHours();
+            m = time.getMinutes();
+            s = time.getSeconds();
+
+            clock.innerHTML = `${h < 10 ? "0" + h : h} : ${m < 10 ? "0" + m : m} : ${s < 10 ? "0" + s : s}`;
+        }
+
+        setInterval(() => {
+            load();
+        }, 10)
+    </script>
+</body>
+</html>
