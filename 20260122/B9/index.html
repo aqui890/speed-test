@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 300px;
+
+            border: 1px solid #222;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* padding: 5px; */
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .card-wrap {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .left,
+        .right {
+            width: 50%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .left {
+            padding-left: 30px;
+
+            justify-content: start;
+
+            font-size: .9rem;
+        }
+
+        .right {
+            padding-right: 30px;
+
+            justify-content: end;
+        }
+
+        .active {
+            font-weight: bold;
+
+            color: rgb(255, 213, 0);
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="card-wrap">
+        <div class="card">
+            <div class="left">
+                <div class="text">
+                    <p>HTML</p>
+                    <p>markup language</p>
+                </div>
+            </div>
+            <div class="right">
+                <p class="active">즐겨찾기</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        let arr = new Array();
+        const load = async () => {
+            const fdata = await fetch("./data.json");
+            const data = await fdata.json();
+
+            console.log(data);
+
+            return data;
+        }
+
+        const draw = () => {
+            console.log(arr);
+
+            let sdata = null
+
+            document.querySelector(".card-wrap").innerHTML = '';
+            
+            for(let i = 0; i < arr.length; i++) {
+                sdata = localStorage.getItem(`${arr[i].name}`)
+                console.log(sdata);
+                document.querySelector(".card-wrap").insertAdjacentHTML("beforeend",
+                    `
+                        <div class="card">
+                            <div class="left">
+                                <div class="text">
+                                    <p>${arr[i].name}</p>
+                                    <p>${arr[i].desc}</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <p class="star ${sdata === "true" ? "active" : ""}" data-id=${arr[i].name}>즐겨찾기</p>
+                            </div>
+                        </div>
+                    `
+                )
+            }
+        }
+
+        document.querySelector(".card-wrap").addEventListener("click", e => {
+            if(!e.target.classList.contains("star")) return;
+            console.log(e.target)
+
+            if(e.target.classList.contains("active")) {
+                e.target.classList.remove('active');
+                localStorage.setItem([e.target.dataset.id], false)
+            } else {
+                e.target.classList.add('active');
+                localStorage.setItem([e.target.dataset.id], true)
+            }
+        })
+
+        load().then(value => {
+            arr = value;
+            draw();
+        })
+    </script>
+</body>
+</html>
