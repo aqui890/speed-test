@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        footer {
+            width: 100%;
+
+            position: fixed;
+            bottom: 0;
+            left: 0;
+
+            background-color: rgb(4, 0, 54);
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .fx-4 {
+            font-size: 1.6rem;
+        }
+        
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .color-blue {
+            color: rgb(0, 110, 255);
+        }
+
+        .color-white {
+            color: #fff;
+        }
+
+        .color-gray {
+            color: #ccc;
+        }
+
+        .first,
+        .second {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .first {
+            padding: 30px;
+
+            border-bottom: 1px solid #bbb
+        }
+
+        .second {
+            padding: 30px;
+        }
+
+        .first-title {
+            width: 50%;
+        }
+
+        .first-link {
+            width: 50%;
+
+
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            gap: 20px;
+            
+            padding-top: 30px;
+        }
+        
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="first">
+            <div class="first-title">
+                <p class="title fw-bold fx-4 color-blue">WorldSkills Korea</p>
+                <p class="color-white">세계기능올림픽대회를 통해 기능인재 양성과 <br>
+                    기능의 우수성을 널리 알리고 있습니다.</p>
+            </div>
+            <div class="first-link">
+                <div class="link-first">
+                    <p class="link-title color-white fw-bold">바로가기</p>
+                    <p class="link color-gray">기능경기대회</p>
+                    <p class="link color-gray">교육과정</p>
+                    <p class="link color-gray">자료실</p>
+                    <p class="link color-gray">공지사항</p>
+                </div>
+                <div class="link-second">
+                    <p class="link-title color-white fw-bold">고객지원</p>
+                    <p class="link color-gray">FAQ</p>
+                    <p class="link color-gray">1:1 문의</p>
+                    <p class="link color-gray">이용약관</p>
+                    <p class="link color-gray">개인정보처리방침</p>
+                </div>
+            </div>
+        </div>
+        <div class="second">
+            <p class="color-gray">주소: 서울특별시 강남구 테헤란로 123 WorldSkills 빌딩 <br>
+                전화: 02-1234-5678 | 이메일: info@worldskills.kr</p>
+            <p class="color-gray">© 2026 WorldSkills Korea. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
