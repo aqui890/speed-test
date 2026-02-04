@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        button {
+            outline: none;
+            border: none;
+
+            width: 100px;
+            height: 45px;
+
+            border-radius: 12px;
+
+            color: #fff;
+        }
+
+        input {
+            width: 30px;
+            height: 30px;
+
+            text-align: center;
+        }
+
+        .send {
+            background-color: red;
+
+            display: none;
+        }
+
+        .send-dis {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-wrap">
+        <input type="text" name="num1" id="num1" maxlength="1">
+        <input type="text" name="num2" id="num2" maxlength="1">
+        <input type="text" name="num3" id="num3" maxlength="1">
+        <input type="text" name="num4" id="num4" maxlength="1">
+        <input type="text" name="num5" id="num5" maxlength="1">
+        <input type="text" name="num6" id="num6" maxlength="1">
+    </div>
+    <button class="send">전송하기</button>
+    <button class="send-dis">전송하기</button>
+
+    <script>
+        document.querySelectorAll("input").forEach((item, idx) => {
+            item.addEventListener("keydown", e => {
+                if(e.key !== "Backsapce") {
+                    e.preventDefault();
+
+                    if(/[^0-9]/.test(e.key) || /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(e.key)) {
+                        e.target.value = '';
+                        return;
+                    }
+
+                    e.target.value = e.key;
+                    
+                    if(idx < 5) {
+                        document.querySelectorAll("input")[idx + 1].focus();
+                    }
+                    
+                    if(e.target === document.querySelectorAll("input")[5]) {
+                        document.querySelector(".send").style.display = "block";
+                        document.querySelector(".send-dis").style.display = "none";
+                    }
+                } else {
+                    e.preventDefault();
+
+                    e.target.value = '';
+
+                    if(idx > 0) {
+                        document.querySelectorAll("input")[idx - 1].focus();
+                    }
+
+                    if(e.target === document.querySelectorAll("input")[5]) {
+                        document.querySelector(".send").style.display = "none";
+                        document.querySelector(".send-dis").style.display = "block";
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>

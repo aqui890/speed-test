@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            flex-direction: column;
+        }
+
+        .container {
+            width: 800px;
+            height: 800px;
+
+            border: 1px solid #222;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .control {
+            width: 100px;
+            height: 50px;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>이미지를 여기에 드래그하세요</p>
+    </div>
+    <div class="control">
+        <button class="reset">초기화</button>
+    </div>
+
+    <script>
+        document.querySelector(".container").addEventListener("dragover", e => {
+            e.preventDefault();
+        })
+
+        document.querySelector(".container").addEventListener("drop", e => {
+            e.preventDefault();
+
+            console.log(e)
+
+            const reader = new FileReader();
+
+            const file = e.dataTransfer.files[0];
+
+            reader.readAsDataURL(file);
+
+            reader.onload = (e2) => {
+                const img = new Image();
+                img.src = e2.target.result;
+                img.onload = () => {
+                    document.querySelector(".container").innerHTML = '';
+                    document.querySelector(".container").appendChild(img);
+                }
+            }
+        })
+
+        document.querySelector(".reset").addEventListener("click", e => {
+            document.querySelector(".container").innerHTML = '<p>이미지를 여기에 드래그하세요</p>';
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .service {
+            width: 1024px;
+            height: 700px;
+
+            background-color: #eee;
+
+            /* border: 1px solid #222; */
+        }
+        
+        .service-body {
+            width: 100%;
+            height: 650px;
+
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            /* border: 1px solid #222; */
+        }
+
+        .service-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            width: 100%;
+            height: 50px;
+
+            text-align: center;
+
+            margin-top: 10px;
+        }
+
+        .service-card {
+            width: 300px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            gap: 20px;
+
+            text-align: center;
+
+            background-color: #fff;
+
+            border-radius: 20px;
+
+            padding: 30px;
+        }
+
+        .service-card-btn {
+            color: #fff;
+
+            width: 100px;
+            height: 45px;
+
+            outline: none;
+            border: none;
+
+            background-color: rgb(0, 47, 255);
+
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="service">
+        <div class="service-title">우리의 서비스</div>
+
+        <div class="service-body">
+            <div class="service-card">
+                <div class="service-logo">🏆</div>
+                <div class="servive-card-title">기능경기대회</div>
+                <div class="service-card-desc">국내외 기능경기대회를 통해 기능인재를 발굴하고 우수한 기능의 가치를 널리 알리고 있습니다.</div>
+                <button class="service-card-btn">자세히 보기</button>
+            </div>
+            <div class="service-card">
+                <div class="service-logo">📚</div>
+                <div class="servive-card-title">교육과정</div>
+                <div class="service-card-desc">체계적인 교육과정을 통해 실무능력을 갖춘 전문기능인을 양성하고 있습니다.</div>
+                <button class="service-card-btn">자세히 보기</button>
+            </div>
+            <div class="service-card">
+                <div class="service-logo">🤝</div>
+                <div class="servive-card-title">국제교류</div>
+                <div class="service-card-desc">세계 각국과의 기능교류를 통해 글로벌 기능인재 네트워크를 구축하고 있습니다.</div>
+                <button class="service-card-btn">자세히 보기</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-logo">🎯</div>
+                <div class="servive-card-title">진로지원</div>
+                <div class="service-card-desc">기능인들의 성공적인 진로개발과 취업지원을 위한 다양한 프로그램을 운영합니다.</div>
+                <button class="service-card-btn">자세히 보기</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-logo">🔧</div>
+                <div class="servive-card-title">기술혁신</div>
+                <div class="service-card-desc">4차 산업혁명 시대에 맞는 첨단기술 교육과 혁신적인 기능개발을 지원합니다.</div>
+                <button class="service-card-btn">자세히 보기</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-logo">💡</div>
+                <div class="servive-card-title">연구개발</div>
+                <div class="service-card-desc">기능분야의 지속적인 연구를 통해 새로운 기술과 교육방법을 개발하고 있습니다.</div>
+                <button class="service-card-btn">자세히 보기</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
