@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        input {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <label for="pw">비밀번호</label>
+    <input type="password" name="password" id="password">
+
+    <script>
+        document.querySelector("#password").addEventListener("input", e => {
+            if(e.target.value.length < 6) {
+                e.target.style.border = "1px solid red";
+                console.log(e.target.value);
+                console.log("red");
+            }
+            
+            if(/[A-Z]/.test(e.target.value) || /[0-9]/.test(e.target.value) && e.target.value.length >= 6 && e.target.value.length < 8) {
+                e.target.style.border = "1px solid orange";
+                console.log(e.target.value);
+                console.log("orange");
+            }
+
+            if(/[A-Z]/.test(e.target.value) && /[0-9]/.test(e.target.value) && /[^\w\s]/.test(e.target.value) && e.target.value.length >= 8) {
+                e.target.style.border = "1px solid green";
+                console.log(e.target.value);
+                console.log("green");
+            }
+        })
+    </script>
+</body>
+</html>

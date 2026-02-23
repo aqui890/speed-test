@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .drop-zone {
+            width: 800px;
+            height: 800px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid #222;
+        }
+
+        .drop-zone img {
+            width: 100%;
+            height: 100%;
+            
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="drop-zone">
+        <p>이미지를 여기에 드래그하세요</p>
+    </div>
+
+    <button class="reset">초기화</button>
+
+    <script>
+        const dropzone = document.querySelector(".drop-zone");
+
+        dropzone.addEventListener("dragover", e => {
+            e.preventDefault();
+        })
+
+        dropzone.addEventListener("drop", e => {
+            e.preventDefault();
+
+            const reader = new FileReader();
+
+            const file = e.dataTransfer.files[0];
+
+            reader.readAsDataURL(file);
+
+            reader.onload = (e2) => {
+                const img = new Image();
+                img.src = e2.target.result;
+                img.onload = () => {
+                    dropzone.innerHTML = '';
+                    dropzone.appendChild(img);
+                }
+            }
+        })
+
+        document.querySelector(".reset").addEventListener("click", e => {
+            dropzone.innerHTML = `<p>이미지를 여기에 드래그하세요</p>`;
+        })
+    </script>
+</body>
+</html>
