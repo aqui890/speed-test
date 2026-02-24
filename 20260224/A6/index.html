@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer {
+            width: 100%;
+
+            background-color: rgb(60, 80, 120);
+
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        .first,
+        .second {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .first {
+            border-bottom: 1px solid #eee;
+        }
+
+        .first .right,
+        .first .left {
+            width: 50%;
+        }
+
+        .right {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+        }
+
+        .left {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .first .title .title-title {
+            color: rgb(66, 146, 218);
+            font-size: 1.6rem;
+
+            margin-bottom: 10px;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .color-white {
+            color: #fff;
+        }
+
+        .color-gray {
+            color: #bbb;
+        }
+
+        .first .right {
+            padding: 30px;
+        }
+
+        .first .left {
+            padding: 30px;
+        }
+
+        .second {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="first">
+            <div class="right">
+                <div class="title">
+                    <p class="fw-bold title-title">WorldSkills Korea</p>
+                </div>
+                <div class="content">
+                    <p class="color-gray">세계기능올림픽대회를 통해 기능인재 양성과 <br>
+                    기능의 우수성을 널리 알리고 있습니다.</p>
+                </div>
+            </div>
+            <div class="left">
+                <div class="first-link">
+                    <p class="link-title fw-bold color-white">바로가기</p>
+                    <p class="color-gray">기능경기대회</p>
+                    <p class="color-gray">교육과정</p>
+                    <p class="color-gray">자료실</p>
+                    <p class="color-gray">공지사항</p>
+                </div>
+                <div class="second-link">
+                    <p class="link-title fw-bold color-white">고객지원</p>
+                    <p class="color-gray">FAQ</p>
+                    <p class="color-gray">1:1 문의</p>
+                    <p class="color-gray">이용약관</p>
+                    <p class="color-gray">개인정보처리방침</p>
+                </div>
+            </div>
+        </div>
+        <div class="second">
+            <p class="info color-gray">주소: 서울특별시 강남구 테헤란로 123 WorldSkills 빌딩 <br>
+            전화: 02-1234-5678 | 이메일: info@worldskills.kr</p>
+            <p class="copy color-gray">© 2026 WorldSkills Korea. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
