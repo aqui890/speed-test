@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            gap: 20px;
+        }
+
+        .card {
+            width: 800px;
+            height: 100px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 20px;
+
+            box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .right,
+        .left {
+            width: 50%;
+        }
+
+        .right {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+
+            padding-left: 20px;
+        }
+
+        .left {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            padding-right: 20px;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .fx-2 {
+            font-size: 1.2rem;
+        }
+
+        .color-gray {
+            color: #ccc;
+        }
+
+        .active {
+            color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="right">
+            <p class="title fw-bold fx-2">HTML</p>
+            <p class="desc color-gray">Markup language</p>
+        </div>
+        <div class="left">
+            <p>즐겨찾기</p>
+        </div>
+    </div>
+
+    <script>
+        let arr = [];
+
+        const load = async () => {
+            const fdata = await fetch("./data.json");
+            const data = await fdata.json();
+
+            return data;
+        }
+
+        let sdata = "";
+
+        const draw = () => {
+            document.body.innerHTML = '';
+
+            for(let i = 0; i < arr.length; i++) {
+                sdata = localStorage.getItem(arr[i].id);
+                document.body.insertAdjacentHTML("beforeend", 
+                    `
+                        <div class="card">
+                            <div class="right">
+                                <p class="title fw-bold fx-2">${arr[i].name}</p>
+                                <p class="desc color-gray">${arr[i].desc}</p>
+                            </div>
+                            <div class="left">
+                                <p class="star ${sdata === "true" ? "active" : ""}" data-id=${arr[i].id}>즐겨찾기</p>
+                            </div>
+                        </div>
+                    `
+                )
+            }
+        }
+
+        document.body.addEventListener("click", e => {
+            if(!e.target.classList.contains("star")) return;
+
+            if(localStorage.getItem(e.target.dataset.id) === "true") {
+                localStorage.setItem(e.target.dataset.id, false);
+                e.target.classList.remove('active');
+            } else {
+                localStorage.setItem(e.target.dataset.id, true);
+                e.target.classList.add('active');
+            }
+        })
+
+        load().then(value => {
+            arr = value;
+            draw();
+        })
+    </script>
+</body>
+</html>
